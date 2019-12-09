@@ -6,8 +6,9 @@
         <b-collapse id="nav-collapse" is-nav>
           <!-- Right aligned nav items -->
           <b-navbar-nav class="ml-auto">
-            <router-link to="/" class="my-link">Inicio</router-link>|
+            <router-link to="/" class="my-link">Personajes</router-link>|
             <router-link to="/login" class="my-link">Iniciar Sesión</router-link>|
+            <router-link to="/signup" class="my-link">Registrarse</router-link>|
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

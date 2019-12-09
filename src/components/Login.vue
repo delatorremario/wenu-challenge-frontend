@@ -4,7 +4,8 @@
       <b-col cols="5">
         <b-card class="p3">
           <h4 class="mb-4">Iniciar de Sesión</h4>
-          <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+          <b-alert variant="danger" :show="error">Email o constraseña incorrectos !!!</b-alert>
+          <b-form @submit="onSubmit" v-if="show">
             <b-form-group id="input-group-1">
               <b-form-input
                 id="input-1"
@@ -18,7 +19,7 @@
             <b-form-group id="input-group-2">
               <b-form-input
                 id="input-2"
-                v-model="form.name"
+                v-model="form.password"
                 type="password"
                 required
                 placeholder="Ingrese su Password"
@@ -39,29 +40,23 @@ export default {
     return {
       form: {
         email: "",
-        password: "",
+        password: ""
       },
-      
-      show: true
+      show: true,
+      error: false
     };
   },
   methods: {
     onSubmit(evt) {
       evt.preventDefault();
-      alert(JSON.stringify(this.form));
-    },
-    onReset(evt) {
-      evt.preventDefault();
-      // Reset our form values
-      this.form.email = "";
-      this.form.name = "";
-      this.form.food = null;
-      this.form.checked = [];
-      // Trick to reset/clear native browser form validation state
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
-      });
+      // alert(JSON.stringify(this.form));
+      this.$store
+        .dispatch("LOGIN", {
+          email: this.form.email,
+          password: this.form.password
+        })
+        .then(success => this.$router.push("/"))
+        .catch(err => (this.error = true));
     }
   }
 };
