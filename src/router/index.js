@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Characters from '../components/Characters'
 import Login from '../components/Login';
 import SignUp from '../components/SignUp';
+import LogOut from '../components/LogOut';
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignUp
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: LogOut
   },
 ]
 
